@@ -9,18 +9,11 @@ function getComputerChoice(params) {
   }
 }
 
-let computerChoice = getComputerChoice();
-let playerChoice = prompt('Please choose between "Rock" "Paper" or "Scissors"');
-playerChoice = playerChoice.toLowerCase();
-
-console.log("You chose: " + playerChoice);
-console.log("The computer chose: " + computerChoice);
-
 function checkInput(input) {
   return input === "rock" || input === "paper" || input === "scissors";
 }
 
-function calculateOutcome(computerSelection, playerSelcetion) {
+function playRound(computerSelection, playerSelcetion) {
   if (checkInput(playerSelcetion)) {
     if (playerSelcetion === computerSelection) {
       return "It's a tie!";
@@ -51,4 +44,40 @@ function calculateOutcome(computerSelection, playerSelcetion) {
   }
 }
 
-console.log(calculateOutcome(computerChoice, playerChoice));
+
+ 
+function playGame() {
+    let playerCounter = 0;
+    let computerCounter = 0;
+
+    for (let index = 0; index < 5; index++) {
+
+        let computerChoice = getComputerChoice();
+        let playerChoice = prompt('Please choose between "Rock" "Paper" or "Scissors"');
+        playerChoice = playerChoice.toLowerCase();
+        
+        console.log("You chose: " + playerChoice);
+        console.log("The computer chose: " + computerChoice);
+
+        let winner = playRound(computerChoice, playerChoice);
+        console.log(playRound(computerChoice, playerChoice));
+    
+        if (winner === "You win!") {
+            playerCounter++;
+        } else {
+            computerCounter++;
+        }
+
+        console.log("Player Counter: " + playerCounter);
+        console.log("Computer Counter: " + computerCounter);
+    }
+
+    if (playerCounter < computerCounter) {
+        return "Computer wins this game"
+    } else {
+        return "You won this game!"
+    }
+    
+}
+
+console.log(playGame());
