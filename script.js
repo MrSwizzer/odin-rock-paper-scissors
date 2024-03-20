@@ -1,4 +1,4 @@
-function getComputerChoice(params) {
+function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
   if (randomNumber === 0) {
     return "rock";
@@ -9,27 +9,51 @@ function getComputerChoice(params) {
   }
 }
 
-function playRound(computerSelection, playerSelcetion) {
-  if (playerSelcetion === computerSelection) {
+function playRound(computerSelection, playerSelection) {
+  if (playerSelection === computerSelection) {
     return "It's a tie!";
-  } else if (playerSelcetion === "rock" && computerSelection === "scissors") {
-    return "You win!";
-  } else if (playerSelcetion === "rock" && computerSelection === "paper") {
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    return "The forbidden Shadow wins!";
+  } else if (playerSelection === "rock" && computerSelection === "paper") {
     return "Computer wins!";
-  } else if (playerSelcetion === "scissors" && computerSelection === "paper") {
-    return "You win!";
-  } else if (
-    playerSelcetion === "scissors" &&
-    computerSelection === "scissors"
-  ) {
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    return "The forbidden Shadow wins!";
+  } else if (playerSelection === "scissors" && computerSelection === "rock") {
     return "Computer wins!";
-  } else if (playerSelcetion === "paper" && computerSelection === "rock") {
-    return "You win!";
-  } else if (playerSelcetion === "paper" && computerSelection === "scissors") {
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    return "The forbidden Shadow wins!";
+  } else if (playerSelection === "paper" && computerSelection === "scissors") {
     return "Computer wins!";
   }
 }
 
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+
+const showResultDiv = document.createElement("div");
+showResultDiv.style.backgroundColor = "magenta";
+showResultDiv.style.fontSize = "50px";
+showResultDiv.style.marginTop = "50px";
+
+rockButton.addEventListener("click", () => {
+  showResultDiv.textContent = "Hmm Hmm JA!";
+  setTimeout(
+    () => (showResultDiv.textContent = playRound(getComputerChoice(), "rock")),
+    3000
+  );
+});
+paperButton.addEventListener("click", () => {
+  showResultDiv.textContent = playRound(getComputerChoice(), "paper");
+});
+scissorsButton.addEventListener("click", () => {
+  showResultDiv.textContent = playRound(getComputerChoice(), "scissors");
+});
+
+const display = document.querySelector("#display");
+display.appendChild(showResultDiv);
+
+/*
 function playGame() {
   let playerCounter = 0;
   let computerCounter = 0;
@@ -47,7 +71,7 @@ function playGame() {
     let winner = playRound(computerChoice, playerChoice);
     console.log(playRound(computerChoice, playerChoice));
 
-    if (winner === "You win!") {
+    if (winner === "The forbidden Shadow wins!") {
       playerCounter++;
     } else if (winner === "Computer wins!") {
       computerCounter++;
@@ -65,5 +89,6 @@ function playGame() {
     return "You won this game!";
   }
 }
+*/
 
-console.log(playGame());
+//console.log(playGame());
