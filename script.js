@@ -13,17 +13,17 @@ function playRound(computerSelection, playerSelection) {
   if (playerSelection === computerSelection) {
     return "It's a tie!";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return "The forbidden Shadow wins!";
+    return "You win this round";
   } else if (playerSelection === "rock" && computerSelection === "paper") {
-    return "Computer wins!";
+    return "Computer wins the round!";
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    return "The forbidden Shadow wins!";
+    return "You win this round";
   } else if (playerSelection === "scissors" && computerSelection === "rock") {
-    return "Computer wins!";
+    return "Computer wins the round!";
   } else if (playerSelection === "paper" && computerSelection === "rock") {
-    return "The forbidden Shadow wins!";
+    return "You win this round";
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
-    return "Computer wins!";
+    return "Computer wins the round!";
   }
 }
 
@@ -32,63 +32,94 @@ const paperButton = document.querySelector("#paper");
 const scissorsButton = document.querySelector("#scissors");
 
 const showResultDiv = document.createElement("div");
-showResultDiv.style.backgroundColor = "magenta";
+showResultDiv.style.backgroundColor = "grey";
 showResultDiv.style.fontSize = "50px";
 showResultDiv.style.marginTop = "50px";
 
+const playerCounterDiv = document.createElement("div");
+playerCounterDiv.style.backgroundColor = "orange";
+playerCounterDiv.style.fontSize = "50px";
+playerCounterDiv.style.marginTop = "50px";
+playerCounterDiv.textContent = "Player Wins: "
+
+const computerCounterDiv = document.createElement("div");
+computerCounterDiv.style.backgroundColor = "orange";
+computerCounterDiv.style.fontSize = "50px";
+computerCounterDiv.style.marginTop = "50px";
+computerCounterDiv.textContent = "Computer Wins: "
+
+const bestOfSevenWinnerDiv = document.createElement("div");
+bestOfSevenWinnerDiv.style.fontSize = "80px";
+bestOfSevenWinnerDiv.style.marginTop = "50px";
+
+let playerCounter = 0;
+let computerCounter = 0;
+
 rockButton.addEventListener("click", () => {
-  showResultDiv.textContent = "Hmm Hmm JA!";
-  setTimeout(
-    () => (showResultDiv.textContent = playRound(getComputerChoice(), "rock")),
-    3000
-  );
+  let roundWinner;
+  roundWinner = playRound(getComputerChoice(), "rock");
+  showResultDiv.textContent = roundWinner;
+
+    if (roundWinner === "You win this round") {
+      playerCounter++;
+    } else if (roundWinner === "Computer wins the round!") {
+      computerCounter++;
+    }
+    
+    playerCounterDiv.textContent = `Player wins: ${playerCounter}`;
+    computerCounterDiv.textContent = `Computer wins: ${computerCounter}`;
+
+    if (playerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "You have won the game"
+    } else if (computerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "The computer won the game"
+    }
 });
 paperButton.addEventListener("click", () => {
-  showResultDiv.textContent = playRound(getComputerChoice(), "paper");
+  let roundWinner;
+  roundWinner = playRound(getComputerChoice(), "paper");
+  showResultDiv.textContent = roundWinner;
+
+    if (roundWinner === "You win this round") {
+      playerCounter++;
+    } else if (roundWinner === "Computer wins the round!") {
+      computerCounter++;
+    }
+    
+    playerCounterDiv.textContent = `Player wins: ${playerCounter}`;
+    computerCounterDiv.textContent = `Computer wins: ${computerCounter}`;
+
+    if (playerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "You have won the game"
+    } else if (computerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "The computer won the game"
+    }
 });
 scissorsButton.addEventListener("click", () => {
-  showResultDiv.textContent = playRound(getComputerChoice(), "scissors");
+  let roundWinner;
+  roundWinner = playRound(getComputerChoice(), "stone");
+  showResultDiv.textContent = roundWinner;
+
+    if (roundWinner === "You win this round") {
+      playerCounter++;
+    } else if (roundWinner === "Computer wins the round!") {
+      computerCounter++;
+    }
+    
+    playerCounterDiv.textContent = `Player wins: ${playerCounter}`;
+    computerCounterDiv.textContent = `Computer wins: ${computerCounter}`;
+
+    if (playerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "You have won the game"
+    } else if (computerCounter >= 5) {
+      bestOfSevenWinnerDiv.textContent = "The computer won the game"
+    }
 });
+
 
 const display = document.querySelector("#display");
 display.appendChild(showResultDiv);
+display.appendChild(bestOfSevenWinnerDiv);
+display.appendChild(playerCounterDiv);
+display.appendChild(computerCounterDiv);
 
-/*
-function playGame() {
-  let playerCounter = 0;
-  let computerCounter = 0;
-
-  for (let index = 0; index < 5; index++) {
-    let computerChoice = getComputerChoice();
-    let playerChoice = prompt(
-      'Please choose between "Rock", "Paper" or "Scissors"'
-    );
-    playerChoice = playerChoice.toLowerCase();
-
-    console.log("You chose: " + playerChoice);
-    console.log("The computer chose: " + computerChoice);
-
-    let winner = playRound(computerChoice, playerChoice);
-    console.log(playRound(computerChoice, playerChoice));
-
-    if (winner === "The forbidden Shadow wins!") {
-      playerCounter++;
-    } else if (winner === "Computer wins!") {
-      computerCounter++;
-    } else {
-      console.log("It's a tie no points!");
-    }
-
-    console.log("Player Counter: " + playerCounter);
-    console.log("Computer Counter: " + computerCounter);
-  }
-
-  if (playerCounter < computerCounter) {
-    return "Computer wins this game";
-  } else {
-    return "You won this game!";
-  }
-}
-*/
-
-//console.log(playGame());
