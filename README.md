@@ -19,7 +19,7 @@ This project is part of **The Odin Project's Foundation curriculum**, where I cr
 
 You can play the game in the browser by opening the webpage and following the prompts. [Live Demo](https://mrswizzer.github.io/odin-rock-paper-scissors)
 
-![Preview](./preview-pictures/preview.png)
+![Preview](./preview-pics/preview.png)
 
 ## 💡 Learning Outcomes
 
