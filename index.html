@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .playButtons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 6vh;
+        }
+
+        button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 50px;
+            width: 100px;
+        }
+    </style>
     <title>Rock Paper Scissors Game</title>
     <script src="./script.js" defer></script>
 </head>
 <body>
-
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
+    <div class="playButtons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
     <div id="display"></div#>
 </body>
 </html>
