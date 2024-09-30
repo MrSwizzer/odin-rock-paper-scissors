@@ -97,7 +97,7 @@ paperButton.addEventListener("click", () => {
 });
 scissorsButton.addEventListener("click", () => {
   let roundWinner;
-  roundWinner = playRound(getComputerChoice(), "stone");
+  roundWinner = playRound(getComputerChoice(), "scissors");
   showResultDiv.textContent = roundWinner;
 
     if (roundWinner === "You win this round") {
